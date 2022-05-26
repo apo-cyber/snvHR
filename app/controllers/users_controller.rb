@@ -21,17 +21,15 @@ class UsersController < ApplicationController
 
   def new
     @user=User.new
-    @iconlabel='new'
   end
 
   def edit
-    @iconlabel=nil
   end
 
   def create
     @user=User.new(user_params)
     if @user.save
-      redirect_to user_path(@user), notice: "ユーザ「#{@user.name}」を更新しました。"
+      redirect_to users_path, notice: "ユーザ「#{@user.name}」を登録しました。"
     else
       flash[:alert]= 'Save error!'
       render :new
@@ -60,7 +58,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(User.column_names.map{|c| c.to_sym} + %i(image password password_confirmation)-%i(password_digest))
+      params.require(:user).permit(User.column_names.map{|c| c.to_sym} + %i(image))
     end
 
     def set_user
