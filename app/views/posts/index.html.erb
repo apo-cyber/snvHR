@@ -56,6 +56,9 @@
               <% if current_user == post.user %>
               <%= link_to '編集', edit_post_path(post), class:"btn btn-primary mr-3 shadow" %>
               <% end %>
+              <% if current_user.HR %>
+                  <%= link_to '削除', post, method: :delete, data: {confirm: "タスク「#{post.name}」を削除してよろしいですか？"}, class:"btn btn-danger shadow" %>
+              <% end %>
             </td>
           </tr>
           <% end %>
